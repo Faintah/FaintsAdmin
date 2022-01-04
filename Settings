@@ -1,0 +1,19 @@
+local Datastore = {} 
+local PlayerHwid = game:GetService('HttpService'):JSONDecode(syn.request({Url = 'https://httpbin.org/get'; Method = 'GET'}).Body).headers["Syn-Fingerprint"]
+
+
+Datastore.Whitelisted = {
+  "8d73b6aff75a92db4b8064a08952d56b301c731d0049c4a327790fd47a4ce1ac0f3835950e7ec631cfc45c643e4906a5c46651925b27b954cbd22df324f6b1bd";
+}
+
+Datastore.Settings = {
+  Prefix = ",";
+  isBeta = false; 
+  isWhitelist = nil; 
+} 
+
+if table.find(Datastore.Whitelisted, PlayerHwid) then 
+  Datastore.Settings.isWhitelist = true; 
+end
+
+return Datastore 
